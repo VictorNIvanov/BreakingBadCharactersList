@@ -18,6 +18,8 @@ class BBCharacterDetails: UIViewController {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var seasons: UIStackView!
     
+    @IBOutlet weak var occupationHeight: NSLayoutConstraint!
+    
     var character: BBCharacter?
     
     var networking = BBNetworking()
@@ -42,7 +44,10 @@ class BBCharacterDetails: UIViewController {
             status.textColor = .red
         }
         
-        occupation.text = character?.occupation![0]
+
+        occupation.text = character?.occupation!.joined(separator: "\n")
+        occupationHeight.constant = CGFloat((character?.occupation!.count)! * 21)
+        
         
         networking.downloadImage(imagePath: character!.imgURL!){ (image) in
             self.photo.image = image

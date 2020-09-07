@@ -18,6 +18,7 @@ extension BBCharacterList {
         
         networking.getCharactersList(){ (charList) in
             self.charactersList = charList
+            self.tableView.reloadData()
         }
         
     }

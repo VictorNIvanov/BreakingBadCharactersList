@@ -18,13 +18,7 @@ class BBCharacterList: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var charactersList: [BBCharacter] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
+    var charactersList: [BBCharacter] = []
     
     var charactersListFiltered: [BBCharacter] = []
     
@@ -33,7 +27,7 @@ class BBCharacterList: UITableViewController {
     }
     var isFiltering: Bool {
         let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
-        return searchController.isActive && (!isSearchBarEmpty || searchBarScopeIsFiltering)
+        return (!isSearchBarEmpty || searchBarScopeIsFiltering)
     }
     
     override func viewDidLoad() {
@@ -66,7 +60,7 @@ class BBCharacterList: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Characters"
-    
+
         searchController.searchBar.scopeButtonTitles = ["All", "Seas. 1", "Seas. 2", "Seas. 3", "Seas. 4", "Seas. 5"]
         searchController.searchBar.delegate = self
         

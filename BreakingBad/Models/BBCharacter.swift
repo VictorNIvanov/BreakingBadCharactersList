@@ -11,7 +11,7 @@ import UIKit
 class BBCharacter: NSObject, Decodable {
     
     var id: Int?
-    @objc var name: String?
+    var name: String?
     var nickname: String?
     var status: String?
     var occupation: [String]?
